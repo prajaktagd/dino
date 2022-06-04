@@ -13,6 +13,15 @@ class Road {
     });
   }
 
+  removeLastObstacle() {
+    this.#obstacles.pop();
+  }
+
+  isObstacleAtEnd() {
+    const lastIndex = this.#obstacles.length - 1;
+    return this.#obstacles[lastIndex] === this.#length;
+  }
+
   addObstacleAt(position) {
     this.#obstacles.push(position);
   }

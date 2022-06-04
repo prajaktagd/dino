@@ -17,8 +17,22 @@ class DinoGame {
     console.log(road + '🦖');
   }
 
+  jump() {
+    this.updateScore(10);
+    this.#road.removeLastObstacle();
+    console.log(this.#score);
+    console.log(Array(50).fill(' ').join('') + '🦖');
+    const road = this.#road.generateRoad();
+    console.log(road + '🌵');
+    process.exit();
+  }
+
   walk() {
     this.#road.moveObstacles();
+    if (this.#road.isObstacleAtEnd()) {
+      this.jump();
+      return;
+    }
     this.updateScore(1);
     this.draw();
   }

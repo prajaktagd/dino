@@ -20,7 +20,7 @@ const main = () => {
     console.clear();
     const event = events[randomInt(events.length)];
     eventEmitter.emit(event);
-  }, 62.5);
+  }, 100);
 };
 
 main();

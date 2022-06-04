@@ -101,10 +101,10 @@
         "*.js"
       ],
       "rules": {
-        "no-console": "off",
+        "no-console": "warn",
         "max-len": "warn",
         "no-magic-numbers": "off",
-        "max-statements": "off"
+        "id-length": "warn"
       }
     }
   ]
