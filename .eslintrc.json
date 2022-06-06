@@ -101,7 +101,7 @@
         "*.js"
       ],
       "rules": {
-        "no-console": "warn",
+        "no-console": "off",
         "max-len": "warn",
         "no-magic-numbers": "off",
         "id-length": "warn"

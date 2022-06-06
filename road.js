@@ -17,13 +17,17 @@ class Road {
     this.#obstacles.pop();
   }
 
+  getLastObstacle() {
+    return this.#obstacles[this.#obstacles.length - 1];
+  }
+
   isObstacleAtEnd() {
     const lastIndex = this.#obstacles.length - 1;
     return this.#obstacles[lastIndex] === this.#length;
   }
 
   addObstacleAt(position) {
-    this.#obstacles.push(position);
+    this.#obstacles.unshift(position);
   }
 
   generateRoad() {

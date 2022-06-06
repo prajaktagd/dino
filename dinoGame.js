@@ -1,9 +1,11 @@
 class DinoGame {
   #score;
   #road;
+  #dino;
 
-  constructor(road) {
+  constructor(road, dino) {
     this.#road = road;
+    this.#dino = dino;
     this.#score = 0;
   }
 
@@ -11,46 +13,35 @@ class DinoGame {
     this.#score += points;
   }
 
-  draw() {
-    console.log(this.#score, '\n');
-    const road = this.#road.generateRoad();
-    console.log(road + '🦖');
+  addTree() {
+    this.#road.addObstacleAt(0);
   }
 
-  jump() {
-    this.updateScore(10);
-    this.#road.removeLastObstacle();
+  draw(char) {
+    console.clear();
+    let sky = '';
+    if (char === '🌵') {
+      sky = Array(50).fill(' ').join('') + '🦖';
+    }
     console.log(this.#score);
-    console.log(Array(50).fill(' ').join('') + '🦖');
+    console.log(sky);
     const road = this.#road.generateRoad();
-    console.log(road + '🌵');
-    process.exit();
+    console.log(road + char);
   }
 
-  walk() {
+  moveRoad() {
     this.#road.moveObstacles();
-    if (this.#road.isObstacleAtEnd()) {
-      this.jump();
+    const pos = this.#road.getLastObstacle();
+    if (this.#dino.isObstacleClose(pos)) {
+      this.#dino.jump();
+      this.#road.removeLastObstacle();
+      this.updateScore(10);
+      this.draw('🌵');
       return;
     }
     this.updateScore(1);
-    this.draw();
+    this.draw('🦖');
   }
 }
 
 exports.DinoGame = DinoGame;
-
-// jump() {
-//   this.#posOfTrees.forEach((_, index) => {
-//     this.#posOfTrees[index] += 1;
-//   });
-//   this.#score += 10;
-//   console.log(this.#score);
-//   this.drawRoad();
-// }
-
-// stopGame() {
-//   console.log(this.#score);
-//   console.log('Game Over!');
-//   process.exit();
-// }
